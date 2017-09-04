@@ -50,6 +50,7 @@ export class LocalServer {
             })
         }
     }
+
     // Simple CORS middleware
     private allowCrossDomain(req: express.Request, res: express.Response, next) {
         res.header('Access-Control-Allow-Origin', req.hostname);
@@ -77,6 +78,7 @@ export class LocalServer {
     private closeAllConnections = () => {
         for (let socketId in this.sockets) {
             this.sockets[socketId].destroy();
+            delete this.sockets[socketId];
         }
     }
 
